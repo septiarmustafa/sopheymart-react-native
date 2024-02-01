@@ -4,6 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../../utils/Colors";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import http from "../../config/httpConfig";
+import { BASE_HOST } from "../../config/baseUrl";
+import { Alert } from "react-native";
 
 export default function ProductDetailScreen({ route }) {
   const { detailedProduct } = route.params;
@@ -15,8 +18,39 @@ export default function ProductDetailScreen({ route }) {
     // console.log("Product added to cart");
   };
 
-  const handleBuyNow = () => {
-    navigation.navigate("OrderConfirmation", { detailedProduct });
+  const handleBuyNow = async () => {
+    try {
+      const orderData = {
+        productName: productName,
+        desc: desc,
+        price: price,
+        stock: 1,
+        storeId: {
+          id: store.id,
+        },
+      };
+
+      const response = await http.post(`${BASE_HOST}/order`, orderData);
+
+      console.log(orderData);
+
+      if (response.ok) {
+        console.log("Order successful!");
+        Alert.alert("Success", "Order successful!", [
+          {
+            text: "OK",
+            onPress: () =>
+              navigation.navigate("OrderConfirmation", { detailedProduct }),
+          },
+        ]);
+      } else {
+        console.error("Order failed");
+        Alert.alert("Error", "Order failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error during order:", error);
+      Alert.alert("Error", "An unexpected error occurred. Please try again.");
+    }
   };
 
   return (
