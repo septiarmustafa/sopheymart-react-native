@@ -17,7 +17,7 @@ export default function Header() {
             <Text style={styles.userName}>Baim Wrong</Text>
           </View>
         </View>
-        <FontAwesome name="bookmark" size={26} color={Colors.WHITE} />
+        <FontAwesome name="shop" size={26} color={Colors.WHITE} />
       </View>
       <View style={styles.searchBarContainer}>
         <TextInput

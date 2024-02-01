@@ -14,21 +14,26 @@ export default function ProductScreen() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const apiEndpoint = BASE_HOST + "/product";
-    const authToken = AsyncStorage.getItem("token");
-    console.log(authToken);
+    const fetchData = async () => {
+      try {
+        const apiEndpoint = BASE_HOST + "/product";
+        const authToken = await AsyncStorage.getItem("token");
+        console.log(authToken);
 
-    http
-      .get(apiEndpoint)
-      .then((response) => {
+        const response = await http.get(apiEndpoint, {
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        });
         setProducts(response.data.data);
-      })
-      .catch((error) => {
+      } catch (error) {
         console.log(error);
-      });
-  }, []);
+        setError(error.message);
+      }
+    };
 
-  console.log(products);
+    fetchData();
+  }, []);
 
   const renderItem = ({ item }) => {
     return (
@@ -40,26 +45,24 @@ export default function ProductScreen() {
       />
     );
   };
+
   return (
-    <SafeAreaView>
-      <View>
-        <View>
-          <Text style={styles.title}>Products</Text>
-          <FlatList
-            data={products}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
+        <Text style={styles.title}>Products</Text>
+        <FlatList
+          data={products}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 32,
-    backgroundColor: "#fff",
+  container: {
+    flex: 1,
   },
   title: {
     fontSize: 16,

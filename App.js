@@ -8,6 +8,7 @@ import TabNavigation from "./app/navigations/TabNavigation";
 import * as React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RegisterScreen from "./app/screens/RegisterScreen/RegisterScreen";
+import ProductDetailScreen from "./app/screens/ProductDetailScreen/ProductDetailScreen";
 
 const Stack = createStackNavigator();
 
@@ -18,9 +19,6 @@ export default function App() {
     outfit_bold: require("./assets/fonts/Outfit-Bold.ttf"),
     outfit_medium: require("./assets/fonts/Outfit-Medium.ttf"),
   });
-  if (!fontsLoaded || fontError) {
-    return null;
-  }
 
   const getIsSignedIn = async () => {
     let isSignedIn = await AsyncStorage.getItem("token");
@@ -36,11 +34,22 @@ export default function App() {
       <View style={styles.container}>
         <Stack.Navigator>
           {signedIn ? (
-            <Stack.Screen
-              name="Tab"
-              component={TabNavigation}
-              options={{ headerShown: false }}
-            />
+            <>
+              <Stack.Screen
+                name="Tab"
+                component={TabNavigation}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="ProductDetail"
+                component={ProductDetailScreen}
+              />
+              <Stack.Screen
+                name="Login"
+                component={LoginScreen}
+                options={{ headerShown: false }}
+              />
+            </>
           ) : (
             <>
               <Stack.Screen

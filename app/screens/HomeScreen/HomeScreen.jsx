@@ -1,25 +1,18 @@
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../../utils/Colors";
-import { Text } from "react-native";
+import ItemProduct from "../../components/ItemProduct";
+import Slider from "./Slider";
 import { BASE_HOST } from "../../config/baseUrl";
 import http from "../../config/httpConfig";
-import ItemProduct from "./ItemProduct";
-import Slider from "./Slider";
 
 export default function HomeScreen() {
-  const [selectedId, setSelectedId] = useState();
   const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const apiEndpoint = BASE_HOST + "/product";
-    // console.log(apiEndpoint)
-    const authToken = AsyncStorage.getItem("token");
-    // console.log(authToken);
 
     http
       .get(apiEndpoint)
@@ -31,8 +24,6 @@ export default function HomeScreen() {
       });
   }, []);
 
-  console.log(products);
-
   const renderItem = ({ item }) => {
     return (
       <ItemProduct
@@ -43,28 +34,30 @@ export default function HomeScreen() {
       />
     );
   };
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.container}>
       <Header />
       <Slider />
-      <View>
-        <View>
-          <Text style={styles.title}>Products</Text>
-          <FlatList
-            data={products}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-          />
-        </View>
+      <View style={styles.content}>
+        <Text style={styles.title}>Products</Text>
+        <FlatList
+          data={products}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          horizontal={true}
+        />
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 32,
-    backgroundColor: "#fff",
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
   },
   title: {
     fontSize: 16,

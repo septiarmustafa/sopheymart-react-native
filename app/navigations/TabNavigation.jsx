@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ProductScreen from "../screens/ProductScreen/ProductScreen";
 import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
-import BookingScreen from "../screens/BookingScreen/BookingScreen";
+import StoreScreen from "../screens/StoreScreen/StoreScreen";
 import Colors from "../utils/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -72,7 +72,7 @@ export default function TabNavigation() {
       {role === "ROLE_ADMIN" ? (
         <Tab.Screen
           name="Store"
-          component={BookingScreen}
+          component={StoreScreen}
           options={{
             tabBarLabel: ({ color }) => (
               <Text

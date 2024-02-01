@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_HOST } from "../../config/baseUrl";
 
 export default function LoginScreen() {
   const [username, setusername] = useState("");
@@ -30,13 +31,10 @@ export default function LoginScreen() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(
-        "http://10.10.100.207:8081/api/auth/login",
-        {
-          username,
-          password,
-        }
-      );
+      const response = await axios.post(`${BASE_HOST}/api/auth/login`, {
+        username,
+        password,
+      });
 
       if (response.status === 200) {
         await AsyncStorage.setItem("token", response.data.data.token);

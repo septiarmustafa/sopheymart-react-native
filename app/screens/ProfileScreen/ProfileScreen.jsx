@@ -15,7 +15,7 @@ export default function ProfileScreen() {
 
       navigation.navigate("Login");
     } catch (error) {
-      console.error("Clerk logout error", error);
+      console.error("logout error", error);
     }
   };
 

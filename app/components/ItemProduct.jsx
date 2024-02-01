@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import Colors from "../../utils/Colors";
+import Colors from "../utils/Colors";
 import { useNavigation } from "@react-navigation/native";
-import { BASE_HOST } from "../../config/baseUrl";
-import http from "../../config/httpConfig";
+import { BASE_HOST } from "../config/baseUrl";
+import http from "../config/httpConfig";
 
 export default function ItemProduct({ id, name, desc, price }) {
   const navigation = useNavigation();
@@ -21,16 +21,17 @@ export default function ItemProduct({ id, name, desc, price }) {
       console.error("Error fetching detailed product information:", error);
     }
   };
+
   return (
-    <TouchableOpacity style={styles.containerItem} onPress={handlePress}>
+    <TouchableOpacity style={styles.container} onPress={handlePress}>
       <Image
-        source={require("../../../assets/favicon.png")}
+        source={require("../../assets/favicon.png")}
         style={styles.imageItem}
       />
       <View style={styles.textItem}>
-        <Text style={styles.titleItem}>{name}</Text>
-        <Text>{price}</Text>
-        <Text>{desc}</Text>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.desc}>{desc}</Text>
+        <Text style={styles.price}>Price: ${price}</Text>
       </View>
     </TouchableOpacity>
   );
