@@ -46,6 +46,7 @@ export default function LoginScreen() {
       if (response.status === 200) {
         await AsyncStorage.setItem("token", response.data.data.token);
         await AsyncStorage.setItem("role", response.data.data.role);
+        await AsyncStorage.setItem("username", response.data.data.username);
 
         console.log("Token and role saved to AsyncStorage");
         console.log(response.data.data.token);

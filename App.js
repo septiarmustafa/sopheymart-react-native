@@ -9,6 +9,7 @@ import * as React from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import RegisterScreen from "./app/screens/RegisterScreen/RegisterScreen";
 import ProductDetailScreen from "./app/screens/ProductDetailScreen/ProductDetailScreen";
+import OrderConfirmationScreen from "./app/screens/OrderConfirmationScreen/OrderConfirmationScreen";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +44,12 @@ export default function App() {
               <Stack.Screen
                 name="ProductDetail"
                 component={ProductDetailScreen}
+                options={{ title: "Product Detail" }}
+              />
+              <Stack.Screen
+                name="OrderConfirmation"
+                component={OrderConfirmationScreen}
+                options={{ title: "Order Confirmation" }}
               />
               <Stack.Screen
                 name="Login"

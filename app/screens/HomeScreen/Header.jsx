@@ -1,10 +1,25 @@
 import { View, StyleSheet, Image, Text, TextInput } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Colors from "../../utils/Colors";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Header() {
+  const [username, setUsername] = useState("");
+  const getUsernameFromStorage = async () => {
+    try {
+      const storedUsername = await AsyncStorage.getItem("username");
+      if (storedUsername) {
+        setUsername(storedUsername);
+      }
+    } catch (error) {
+      console.error("Error getting username from AsyncStorage:", error);
+    }
+  };
+  useEffect(() => {
+    getUsernameFromStorage();
+  }, []);
   return (
     <View style={styles.container}>
       <View style={styles.profileMainContainer}>
@@ -15,7 +30,7 @@ export default function Header() {
           />
           <View>
             <Text style={styles.welcome}>Welcome,</Text>
-            <Text style={styles.userName}>Septiar</Text>
+            <Text style={styles.userName}>{username}</Text>
           </View>
         </View>
         <Entypo name="shopping-cart" size={24} color={Colors.WHITE} />

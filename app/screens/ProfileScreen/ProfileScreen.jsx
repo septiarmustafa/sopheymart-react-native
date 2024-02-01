@@ -1,5 +1,5 @@
 import { View, StyleSheet, Image, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import Colors from "../../utils/Colors";
 import { AntDesign } from "@expo/vector-icons";
@@ -8,6 +8,29 @@ import { Ionicons } from "@expo/vector-icons";
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
+  const [username, setUsername] = useState("");
+  const [role, setRole] = useState("");
+
+  const getUserDataFromStorage = async () => {
+    try {
+      const storedUsername = await AsyncStorage.getItem("username");
+      const storedRole = await AsyncStorage.getItem("role");
+
+      if (storedUsername) {
+        setUsername(storedUsername);
+      }
+
+      if (storedRole) {
+        setRole(storedRole);
+      }
+    } catch (error) {
+      console.error("Error getting user data from AsyncStorage:", error);
+    }
+  };
+
+  useEffect(() => {
+    getUserDataFromStorage();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -27,7 +50,8 @@ export default function ProfileScreen() {
           source={require("./../../../assets/images/young.jpeg")}
           style={styles.userImage}
         />
-        <Text style={styles.userName}>Septiar</Text>
+        <Text style={styles.userName}>{username}</Text>
+        <Text style={styles.userName}>{role}</Text>
       </View>
       <TouchableOpacity
         onPress={() => {

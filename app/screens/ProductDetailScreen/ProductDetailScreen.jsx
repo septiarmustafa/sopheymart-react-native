@@ -1,11 +1,13 @@
 import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Colors from "../../utils/Colors";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function ProductDetailScreen({ route }) {
   const { detailedProduct } = route.params;
+  const navigation = useNavigation();
 
   const { productName, desc, price, stock, store } = detailedProduct.data;
 
@@ -14,7 +16,7 @@ export default function ProductDetailScreen({ route }) {
   };
 
   const handleBuyNow = () => {
-    // console.log("Buying the product now");
+    navigation.navigate("OrderConfirmation", { detailedProduct });
   };
 
   return (
@@ -25,10 +27,10 @@ export default function ProductDetailScreen({ route }) {
       />
 
       <Text style={styles.title}>{productName}</Text>
-      <Text style={styles.title}>Store : {store.name}</Text>
+      <Text style={styles.title}>Store: {store.name}</Text>
       <Text style={styles.title}>Rp {price}</Text>
-      <Text style={styles.body}>Description : {desc}</Text>
-      <Text style={styles.body}>Stock : {stock}</Text>
+      <Text style={styles.body}>Description: {desc}</Text>
+      <Text style={styles.body}>Stock: {stock}</Text>
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={handleAddToCart}>

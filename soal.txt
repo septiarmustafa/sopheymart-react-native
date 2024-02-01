@@ -1,14 +1,12 @@
 
-    Priority : 
-    - validasi login
-    - validasi registrasi
-    
+    Priority :     
     - order
-    - add to cart
     - success screen login
 
+    - add to cart
+
+
     Optional : 
-    - pop up berhasil dan gagal
     - loading
 
 
