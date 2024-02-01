@@ -72,7 +72,7 @@ export default function ProductDetailScreen({ route }) {
           <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button} onPress={handleBuyNow}>
+        <TouchableOpacity style={styles.button}>
           <FontAwesome5 name="money-check-alt" size={24} color={Colors.WHITE} />
           <Text style={styles.buttonText}>Buy Now</Text>
         </TouchableOpacity>

@@ -1,16 +1,3 @@
-
-    Priority :     
-    - order
-    - success screen login
-
-    - add to cart
-
-
-    Optional : 
-    - loading
-
-
-
 1. Menerapkan fitur authentikasi dan autorisasi dengan komponen login
 2. Memiliki fitur registrasi akun 
 3. Menerapkan validasi pada input form registrasi dan login 
