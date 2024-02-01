@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   TextInput,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +17,7 @@ export default function LoginScreen() {
   const [username, setusername] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [err, setErr] = useState("");
   const navigation = useNavigation();
 
   const handleUsername = (text) => {
@@ -26,6 +28,15 @@ export default function LoginScreen() {
   };
 
   const handleLogin = async () => {
+    if (!username) {
+      Alert.alert("Error", "Username is required.");
+      return;
+    }
+    if (!password) {
+      Alert.alert("Error", "Password is required.");
+      return;
+    }
+
     try {
       const response = await axios.post(`${BASE_HOST}/api/auth/login`, {
         username,
@@ -40,15 +51,24 @@ export default function LoginScreen() {
         console.log(response.data.data.token);
         console.log(response.data.data.role);
 
-        navigation.navigate("Tab");
+        Alert.alert("Success", "Login successful!", [
+          {
+            text: "OK",
+            onPress: () => {
+              navigation.navigate("Tab");
+            },
+          },
+        ]);
       } else {
-        console.error("Login failed");
-        console.error(response.data.message);
+        Alert.alert("Error", response.data.message);
+        setErr(response.data.message);
       }
     } catch (error) {
       console.error("Error during login:", error);
+      Alert.alert("Error", error.message);
     }
   };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -83,7 +103,6 @@ export default function LoginScreen() {
           <TouchableOpacity style={styles.appleButton}>
             <Text style={styles.buttonText}>Login with Apple</Text>
           </TouchableOpacity>
-
           <View style={styles.register}>
             <Text style={styles.signUpText}>Don't have an account?</Text>
             <TouchableOpacity
@@ -165,7 +184,6 @@ const styles = StyleSheet.create({
   },
   register: {
     paddingTop: 15,
-
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",

@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   TextInput,
+  Alert,
 } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
@@ -31,6 +32,27 @@ export default function RegisterScreen() {
   };
 
   const handleRegister = async () => {
+    const { username, password, name, address, mobilePhone, email } =
+      registrationData;
+    if (!username || !password || !name || !address || !mobilePhone || !email) {
+      Alert.alert(
+        "Error",
+        !username
+          ? "Username is required."
+          : !password
+          ? "Password is required."
+          : !name
+          ? "Name is required."
+          : !address
+          ? "Address is required."
+          : !mobilePhone
+          ? "Mobile Phone is required."
+          : !email
+          ? "Email is required."
+          : "All field are required."
+      );
+      return;
+    }
     try {
       const response = await axios.post(
         `${BASE_HOST}/api/auth/customer/register`,
