@@ -25,10 +25,6 @@ export default function LoginScreen() {
     setPassword(text);
   };
 
-  const togglePasswordVisibility = () => {
-    setHidePassword(!hidePassword);
-  };
-
   const handleLogin = async () => {
     try {
       const response = await axios.post(`${BASE_HOST}/api/auth/login`, {

@@ -62,6 +62,11 @@ export default function App() {
                 component={RegisterScreen}
                 options={{ headerShown: false }}
               />
+              <Stack.Screen
+                name="Tab"
+                component={TabNavigation}
+                options={{ headerShown: false }}
+              />
             </>
           )}
         </Stack.Navigator>

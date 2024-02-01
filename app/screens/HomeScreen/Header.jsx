@@ -1,6 +1,7 @@
 import { View, StyleSheet, Image, Text, TextInput } from "react-native";
 import React from "react";
 import Colors from "../../utils/Colors";
+import { Entypo } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 
 export default function Header() {
@@ -14,10 +15,10 @@ export default function Header() {
           />
           <View>
             <Text style={styles.welcome}>Welcome,</Text>
-            <Text style={styles.userName}>Baim Wrong</Text>
+            <Text style={styles.userName}>Septiar</Text>
           </View>
         </View>
-        <FontAwesome name="shop" size={26} color={Colors.WHITE} />
+        <Entypo name="shopping-cart" size={24} color={Colors.WHITE} />
       </View>
       <View style={styles.searchBarContainer}>
         <TextInput

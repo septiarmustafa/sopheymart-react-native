@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import Colors from "../../utils/Colors";
 import { AntDesign } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function ProfileScreen() {
   const navigation = useNavigation();
@@ -26,7 +27,7 @@ export default function ProfileScreen() {
           source={require("./../../../assets/images/young.jpeg")}
           style={styles.userImage}
         />
-        <Text style={styles.userName}>Baim Wrong</Text>
+        <Text style={styles.userName}>Septiar</Text>
       </View>
       <TouchableOpacity
         onPress={() => {
@@ -34,21 +35,25 @@ export default function ProfileScreen() {
         }}
       >
         <View style={styles.card}>
-          <AntDesign name="hearto" size={24} color="black" />
-          <Text style={styles.cardText}>Favorit</Text>
+          <AntDesign name="hearto" size={26} color="black" />
+          <Text style={styles.cardText}>Wishlist</Text>
         </View>
       </TouchableOpacity>
       <View style={styles.card}>
-        <AntDesign name="shoppingcart" size={24} color="black" />
+        <AntDesign name="shoppingcart" size={26} color="black" />
         <Text style={styles.cardText}>Order</Text>
       </View>
       <View style={styles.card}>
-        <AntDesign name="file1" size={24} color="black" />
-        <Text style={styles.cardText}>Cart</Text>
+        <AntDesign name="file1" size={26} color="black" />
+        <Text style={styles.cardText}>History Order</Text>
+      </View>
+      <View style={styles.card}>
+        <Ionicons name="settings-outline" size={26} color="black" />
+        <Text style={styles.cardText}>Setting Account</Text>
       </View>
       <TouchableOpacity onPress={handleLogout}>
         <View style={styles.card}>
-          <AntDesign name="logout" size={24} color="black" />
+          <AntDesign name="logout" size={26} color="black" />
           <Text style={styles.cardText}>Logout</Text>
         </View>
       </TouchableOpacity>
@@ -67,7 +72,7 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
-    paddingTop: 40,
+    paddingTop: 50,
     backgroundColor: Colors.PRIMARY_COLOR,
   },
   userName: {
@@ -86,6 +91,8 @@ const styles = StyleSheet.create({
   cardText: {
     fontSize: 20,
     marginLeft: 20,
+    fontFamily: "outfit",
+    color: Colors.PRIMARY_COLOR,
   },
   logo: {
     flexDirection: "row",

@@ -9,7 +9,6 @@ import http from "../../config/httpConfig";
 import ItemProduct from "./ItemProduct";
 
 export default function ProductScreen() {
-  const [selectedId, setSelectedId] = useState();
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
 
@@ -49,7 +48,7 @@ export default function ProductScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text style={styles.title}>Products</Text>
+        <Text style={styles.title}>All Products</Text>
         <FlatList
           data={products}
           renderItem={renderItem}
@@ -65,8 +64,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 16,
-    padding: 10,
+    fontSize: 20,
+    padding: 16,
     color: Colors.PRIMARY_COLOR,
     fontWeight: "bold",
   },

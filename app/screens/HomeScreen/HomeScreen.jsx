@@ -1,4 +1,4 @@
-import { View, StyleSheet, FlatList, Text } from "react-native";
+import { View, StyleSheet, FlatList, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -27,6 +27,7 @@ export default function HomeScreen() {
   const renderItem = ({ item }) => {
     return (
       <ItemProduct
+        style={styles.cardProduct}
         name={item.name}
         desc={item.description}
         id={item.id}
@@ -39,15 +40,31 @@ export default function HomeScreen() {
     <SafeAreaView style={styles.container}>
       <Header />
       <Slider />
-      <View style={styles.content}>
-        <Text style={styles.title}>Products</Text>
-        <FlatList
-          data={products}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          horizontal={true}
-        />
-      </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <View style={styles.content}>
+          <Text style={styles.title}>New Arrivals</Text>
+          <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+          />
+          <Text style={styles.title}>Recommended For You</Text>
+          <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+          />
+          <Text style={styles.title}>Best Seller</Text>
+          <FlatList
+            data={products}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            horizontal={true}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -56,8 +73,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  content: {
-    flex: 1,
+  scrollContainer: {
+    flexGrow: 1,
+  },
+  cardProduct: {
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: Colors.PRIMARY_COLOR,
   },
   title: {
     fontSize: 16,

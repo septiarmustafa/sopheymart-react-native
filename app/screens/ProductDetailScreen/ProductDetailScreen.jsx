@@ -5,20 +5,18 @@ import Colors from "../../utils/Colors";
 import { Text } from "react-native";
 
 export default function ProductDetailScreen({ route }) {
-  // Extract detailedProduct from route.params
   const { detailedProduct } = route.params;
-  // Extract id from detailedProduct
-  const { productId: id } = detailedProduct.data;
 
-  // Now id should be defined
-  console.log(" id : " + id);
-  console.log(" detailed product ======= " + detailedProduct.data);
+  const { productName, desc, price, stock, store } = detailedProduct.data;
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text style={styles.title}>Product Detail</Text>
-        {/* Display other details of the product using detailedProduct */}
+        <Text style={styles.title}>{productName}</Text>
+        <Text>{desc}</Text>
+        <Text>Price: ${price}</Text>
+        <Text>Stock: {stock}</Text>
+        <Text>Store: {store.name}</Text>
       </View>
     </SafeAreaView>
   );

@@ -1,11 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
-import Colors from "../utils/Colors";
 import { useNavigation } from "@react-navigation/native";
-import { BASE_HOST } from "../config/baseUrl";
-import http from "../config/httpConfig";
+import Colors from "../../utils/Colors";
+import { BASE_HOST } from "../../config/baseUrl";
+import http from "../../config/httpConfig";
 
-export default function ItemProduct({ id, name, desc, price }) {
+export default function Store({ id, name, desc, price }) {
   const navigation = useNavigation();
 
   const handlePress = async () => {
@@ -25,13 +25,12 @@ export default function ItemProduct({ id, name, desc, price }) {
   return (
     <TouchableOpacity style={styles.containerItem} onPress={handlePress}>
       <Image
-        source={require("../../assets/images/latte.jpg")}
+        source={require("../../../assets/images/latte.jpg")}
         style={styles.imageItem}
       />
       <View style={styles.textItem}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.desc}>{desc}</Text>
-        <Text style={styles.price}>Rp {price}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -43,8 +42,9 @@ const styles = StyleSheet.create({
   },
   containerItem: {
     margin: 2,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 16,
     borderRadius: 16,
     backgroundColor: Colors.WHITE,
     flexDirection: "row",
@@ -65,14 +65,17 @@ const styles = StyleSheet.create({
   },
   textItem: {
     padding: 10,
+    marginLeft: 10,
     flex: 1,
   },
   titleItem: {
-    fontSize: 12,
+    fontSize: 16,
+    fontWeight: "bold",
     color: Colors.PRIMARY_COLOR,
   },
   name: {
     fontSize: 16,
     fontWeight: "bold",
+    color: Colors.PRIMARY_COLOR,
   },
 });

@@ -1,21 +1,17 @@
 
     Wajib : 
-    - order
     - product detail
-    - add to cart
-    - product ( List View )
     - validasi login
     - validasi registrasi
-    
+    - add to cart
+    - order
+    - success screen login
 
     opsional : 
     - pop up berhasil dan gagal
-    - success screen login
-    - home bagusin
-    - profile
     - loading
 
-    
+
 
 1. Menerapkan fitur authentikasi dan autorisasi dengan komponen login
     - pop up berhasil dan gagal

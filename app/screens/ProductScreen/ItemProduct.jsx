@@ -14,7 +14,7 @@ export default function ItemProduct({ id, name, desc, price }) {
       const response = await http.get(apiEndpoint);
 
       const detailedProduct = response.data;
-      console.log("detail ========= " + detailedProduct);
+      console.log("detail == " + detailedProduct);
 
       navigation.navigate("ProductDetail", { detailedProduct });
     } catch (error) {
@@ -24,13 +24,13 @@ export default function ItemProduct({ id, name, desc, price }) {
   return (
     <TouchableOpacity style={styles.containerItem} onPress={handlePress}>
       <Image
-        source={require("../../../assets/favicon.png")}
+        source={require("../../../assets/images/latte.jpg")}
         style={styles.imageItem}
       />
       <View style={styles.textItem}>
         <Text style={styles.titleItem}>{name}</Text>
-        <Text>{price}</Text>
         <Text>{desc}</Text>
+        <Text>Rp {price}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
   },
   containerItem: {
     margin: 2,
-    marginLeft: 10,
-    marginRight: 10,
+    marginLeft: 16,
+    marginRight: 16,
+    marginBottom: 16,
     borderRadius: 16,
     backgroundColor: Colors.WHITE,
     flexDirection: "row",
@@ -64,10 +65,12 @@ const styles = StyleSheet.create({
   },
   textItem: {
     padding: 10,
+    marginLeft: 10,
     flex: 1,
   },
   titleItem: {
-    fontSize: 12,
+    fontSize: 16,
+    fontWeight: "bold",
     color: Colors.PRIMARY_COLOR,
   },
 });
