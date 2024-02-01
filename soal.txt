@@ -1,0 +1,41 @@
+
+    Wajib : 
+    - order
+    - product detail
+    - add to cart
+    - product ( List View )
+    - validasi login
+    - validasi registrasi
+    
+
+    opsional : 
+    - pop up berhasil dan gagal
+    - success screen login
+    - home bagusin
+    - profile
+    - loading
+
+    
+
+1. Menerapkan fitur authentikasi dan autorisasi dengan komponen login
+    - pop up berhasil dan gagal
+    - loading
+2. Memiliki fitur registrasi akun 
+3. Menerapkan validasi pada input form registrasi dan login 
+    - validasi login
+    - validasi registrasi
+4. Memiliki screen home, product dan profil 
+    - home
+    - product ( List View )
+    - cart
+    - profile
+5. Memiliki list product dalam screen product 
+6. Bisa melihat detail product ketika product di klik 
+    - product detail
+    - add to cart
+7. bisa melakukan transaksi product
+    - order
+    - success screen
+
+
+   
